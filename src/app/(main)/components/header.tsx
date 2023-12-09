@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const MainHeader = () => {
   return (
-    <nav className="flex justify-between p-4 items-center">
+    <nav className="flex justify-between p-4 items-center fixed w-full">
       <div>
         <div className="text-gray-100 flex items-center">
           <MenuIcon  className="h-8 w-8"/>
