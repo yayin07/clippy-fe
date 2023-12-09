@@ -15,6 +15,7 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import User from "../../../../public/images/user.png";
 import Right from "../../../../public/images/right.png";
 import { InfoIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Item {
   id: number;
@@ -27,7 +28,7 @@ interface Item {
   date: string;
 }
 
-const itemsData: Item[] = [
+export const itemsData: Item[] = [
   {
     id: 1,
     title: "Pinocchio, Disney 100",
@@ -180,6 +181,7 @@ const PrevNav = forwardRef<HTMLDivElement>((props, ref) => {
 PrevNav.displayName = "PrevNav";
 
 const FeaturedItems: React.FC = () => {
+  const router = useRouter()
   const nextNav = useRef<HTMLDivElement>(null);
   const prevNav = useRef<HTMLDivElement>(null);
   return (
@@ -190,7 +192,7 @@ const FeaturedItems: React.FC = () => {
             Featured shows
             <InfoIcon />
           </div>
-          <div className="text-[14px] font-normal md:text-[16px] md:font-medium flex flex-row items-center">
+          <div onClick={()=>router.push("/videos")} className="hover:cursor-pointer text-[14px] font-normal md:text-[16px] md:font-medium flex flex-row items-center">
             See all
             <Image
               src={Right}
@@ -238,8 +240,9 @@ const FeaturedItems: React.FC = () => {
             className="cursor-pointer rounded-lg [.swiper-button-next]:hidden"
           >
             {itemsData.map((item) => (
-              <SwiperSlide className="rounded-lg" key={item.id}>
+              <SwiperSlide className="rounded-lg" key={item.id} >
                 <div
+                onClick={()=>router.push(`/videos/${item.id}`)}
                   key={item.id}
                   className="relative overflow-hidden w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 shadow-md bg-white  rounded-lg text-black flex flex-col justify-between"
                 >

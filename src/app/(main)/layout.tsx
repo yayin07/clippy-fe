@@ -9,7 +9,7 @@ export default function HomeLayout({
   return (
     <div className=" min-h-screen flex flex-col bg-black">
       <MainHeader />
-      <section className="flex-grow">{children}</section>
+      <section className="flex-grow max-w-[1366px] mx-auto">{children}</section>
       <MainFooter />
     </div>
   );
