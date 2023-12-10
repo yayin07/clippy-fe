@@ -26,6 +26,7 @@ const MainHeader = () => {
       className={`flex justify-between p-4 items-center fixed top-0 z-20 w-full ${
         scrolling ? "bg-black/80" : "lg:bg-transparent "
       } z-10`}
+      style={{ transition: "background-color 0.5s ease" }}
     >
       {/* burger */}
       <div>
