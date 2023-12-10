@@ -185,7 +185,7 @@ const FeaturedItems: React.FC = () => {
   const prevNav = useRef<HTMLDivElement>(null);
   return (
     <>
-      <div className="relative p-4 xl:p-0  bg-black ">
+      <div className="relative p-4 xl:p-0 bg-black ">
         <div className="flex justify-between py-2 text-white pr-[16px]  md:pr-0">
           <div className=" text-[14px] md:text-[20px] font-bold flex flex-row items-center gap-1">
             Featured shows
