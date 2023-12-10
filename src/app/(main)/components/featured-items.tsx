@@ -61,8 +61,7 @@ export const itemsData: Item[] = [
   },
   {
     id: 4,
-    title:
-      "Two Love You",
+    title: "Two Love You",
     images: Picture1,
     seller: "Viva",
     sellerImages: User,
@@ -181,18 +180,21 @@ const PrevNav = forwardRef<HTMLDivElement>((props, ref) => {
 PrevNav.displayName = "PrevNav";
 
 const FeaturedItems: React.FC = () => {
-  const router = useRouter()
+  const router = useRouter();
   const nextNav = useRef<HTMLDivElement>(null);
   const prevNav = useRef<HTMLDivElement>(null);
   return (
     <>
-      <div className="my-2 md:my-8 p-2">
+      <div className=" p-2">
         <div className="flex justify-between py-2 text-white pr-[16px]  md:pr-0">
           <div className=" text-[14px] md:text-[20px] font-bold flex flex-row items-center gap-1">
             Featured shows
             <InfoIcon />
           </div>
-          <div onClick={()=>router.push("/videos")} className="hover:cursor-pointer text-[14px] font-normal md:text-[16px] md:font-medium flex flex-row items-center">
+          <div
+            onClick={() => router.push("/videos")}
+            className="hover:cursor-pointer text-[14px] font-normal md:text-[16px] md:font-medium flex flex-row items-center"
+          >
             See all
             <Image
               src={Right}
@@ -240,9 +242,9 @@ const FeaturedItems: React.FC = () => {
             className="cursor-pointer rounded-lg [.swiper-button-next]:hidden"
           >
             {itemsData.map((item) => (
-              <SwiperSlide className="rounded-lg" key={item.id} >
+              <SwiperSlide className="rounded-lg" key={item.id}>
                 <div
-                onClick={()=>router.push(`/videos/${item.id}`)}
+                  onClick={() => router.push(`/videos/${item.id}`)}
                   key={item.id}
                   className="relative overflow-hidden w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 shadow-md bg-white  rounded-lg text-black flex flex-col justify-between"
                 >

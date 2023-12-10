@@ -4,9 +4,14 @@ import FeaturedItems from "./components/featured-items";
 
 export default function HomePage() {
   return (
-    <main className="">
+    <main>
       <HomeBanner />
-      <FeaturedItems />
+      <div className="md:py-16">
+        <FeaturedItems />
+        <FeaturedItems />
+        <FeaturedItems />
+        <FeaturedItems />
+      </div>
     </main>
   );
 }
