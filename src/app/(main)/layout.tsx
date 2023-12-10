@@ -1,4 +1,3 @@
-import HomeBanner from "./components/banner";
 import MainFooter from "./components/footer";
 import MainHeader from "./components/header";
 
@@ -10,8 +9,7 @@ export default function HomeLayout({
   return (
     <div className="bg-black">
       <MainHeader />
-
-      <section className="max-w-[1366px]  mx-auto">{children}</section>
+      <section className="max-w-[1366px] mx-auto">{children}</section>
       <MainFooter />
     </div>
   );

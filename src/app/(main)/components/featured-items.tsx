@@ -185,7 +185,7 @@ const FeaturedItems: React.FC = () => {
   const prevNav = useRef<HTMLDivElement>(null);
   return (
     <>
-      <div className=" p-2">
+      <div className="relative p-4 xl:p-0  bg-black ">
         <div className="flex justify-between py-2 text-white pr-[16px]  md:pr-0">
           <div className=" text-[14px] md:text-[20px] font-bold flex flex-row items-center gap-1">
             Featured shows
@@ -239,14 +239,14 @@ const FeaturedItems: React.FC = () => {
             }}
             onSwiper={(swiper) => console.log(swiper)}
             modules={[Navigation]}
-            className="cursor-pointer rounded-lg [.swiper-button-next]:hidden"
+            className="cursor-pointer rounded-lg [.swiper-button-next]:hidden bg-black"
           >
             {itemsData.map((item) => (
               <SwiperSlide className="rounded-lg" key={item.id}>
                 <div
                   onClick={() => router.push(`/videos/${item.id}`)}
                   key={item.id}
-                  className="relative overflow-hidden w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 shadow-md bg-white  rounded-lg text-black flex flex-col justify-between"
+                  className="relative overflow-hidden  w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 shadow-md bg-white  rounded-lg text-black flex flex-col justify-between"
                 >
                   <Image
                     src={item.images}

@@ -23,10 +23,8 @@ const MainHeader = () => {
 
   return (
     <nav
-      className={`flex justify-between p-4 items-center fixed top-0 w-full ${
-        scrolling
-          ? "bg-blue-500/80"
-          : "lg:bg-transparent bg-black bg-gradient-to-t"
+      className={`flex justify-between p-4 items-center fixed top-0 z-20 w-full ${
+        scrolling ? "bg-black/80" : "lg:bg-transparent "
       } z-10`}
     >
       {/* burger */}
