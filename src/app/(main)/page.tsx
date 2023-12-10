@@ -6,10 +6,11 @@ export default function HomePage() {
   return (
     <main>
       <HomeBanner />
-      <div className="md:py-16 bg-black    ">
-        <div className="relative bg-gradient-to-t from-black h-28 ">
-          hoaihsd
-        </div>
+      <div className="lg:py-16 bg-black    ">
+        <div className="relative bg-gradient-to-t from-black xl:h-28 h-0 " />
+        <FeaturedItems />
+        <FeaturedItems />
+        <FeaturedItems />
         <FeaturedItems />
         <FeaturedItems />
         <FeaturedItems />

@@ -4,6 +4,14 @@ import { Button } from "../../../components/ui/button";
 import { MenuIcon } from "lucide-react";
 import ClippyLogo from "../../../../public/images/clippy-logo.png";
 import Image from "next/image";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const MainHeader = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -35,6 +43,21 @@ const MainHeader = () => {
           <div className="flex">
             <Image src={ClippyLogo} alt="Clippy Logo" className="h-8 w-8" />
             <h1 className="text-2xl font-semibold">Clippy</h1>
+          </div>
+
+          <div className="hidden">
+            <Sheet>
+              <SheetTrigger>Open</SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+                  <SheetDescription>
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
+                  </SheetDescription>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
         <div></div>
