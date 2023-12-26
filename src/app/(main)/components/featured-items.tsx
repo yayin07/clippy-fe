@@ -129,26 +129,6 @@ export const itemsData: Item[] = [
     isTommorow: true,
     date: "Tomorrow - 10 PM ",
   },
-  {
-    id: 11,
-    title: "Kaka",
-    images: Picture,
-    seller: "Disney Store",
-    sellerImages: Picture,
-    isLive: false,
-    isTommorow: true,
-    date: "11/28 - 10:30 PM ",
-  },
-  {
-    id: 12,
-    title: "Paglaki ko gusto ko maging PORN STAR",
-    images: Picture2,
-    seller: "Upper Deck ",
-    sellerImages: User,
-    isLive: false,
-    isTommorow: true,
-    date: "Tomorrow - 10 PM ",
-  },
 ];
 
 const NextNav = forwardRef<HTMLDivElement>((props, ref) => {
@@ -183,10 +163,55 @@ const FeaturedItems: React.FC = () => {
   const router = useRouter();
   const nextNav = useRef<HTMLDivElement>(null);
   const prevNav = useRef<HTMLDivElement>(null);
+
+  const renderShows = (itemsData: any) => {
+    // Calculate the number of blank items needed
+    const remainder = itemsData.length % 6;
+    const blanksNeeded = remainder === 0 ? 0 : 6 - remainder;
+
+    // Create an array of blank items
+    const blankItems = Array.from({ length: blanksNeeded }, () => ({}));
+
+    // Concatenate the original shows array with the blank items
+    const combinedShows = [...itemsData, ...blankItems];
+
+    // Map over the combined array to render the Swiper slides
+    return combinedShows.map((item: any, index) => {
+      // Check if the item is a blank item
+      const isBlank = Object.keys(item).length === 0;
+
+      return (
+        <SwiperSlide
+          className="rounded-lg"
+          key={`${item.id || "blank"}-${index}`}
+        >
+          {!isBlank ? (
+            <div className="rounded-lg" key={item.id}>
+              <div
+                onClick={() => router.push(`/videos/${item.id}`)}
+                key={item.id}
+                className="relative overflow-hidden  w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 shadow-md bg-white  rounded-lg text-black flex flex-col justify-between"
+              >
+                <Image
+                  src={item.images}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="relative overflow-hidden w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 bg-white  rounded-lg text-black flex flex-col justify-between"></div>
+          )}
+        </SwiperSlide>
+      );
+    });
+  };
+
   return (
     <>
       <div className="relative p-4 bg-black ">
-        <div className="flex justify-between py-2 text-white pr-[16px]  md:pr-0">
+        <div className="flex justify-between py-2 text-white">
           <div className=" text-[14px] md:text-[20px] font-bold flex flex-row items-center gap-1">
             Featured shows
             <InfoIcon />
@@ -221,7 +246,7 @@ const FeaturedItems: React.FC = () => {
               768: {
                 slidesPerView: 6,
                 slidesPerGroup: 6,
-                spaceBetween: 22,
+                spaceBetween: 16,
               },
             }}
             onSlideChange={() => console.log("slide change")}
@@ -241,61 +266,7 @@ const FeaturedItems: React.FC = () => {
             modules={[Navigation]}
             className="cursor-pointer rounded-lg [.swiper-button-next]:hidden bg-black"
           >
-            {itemsData.map((item) => (
-              <SwiperSlide className="rounded-lg" key={item.id}>
-                <div
-                  onClick={() => router.push(`/videos/${item.id}`)}
-                  key={item.id}
-                  className="relative overflow-hidden  w-[151px] h-[273px] md:w-[209px] md:h-[324px] flex-shrink-0 shadow-md bg-white  rounded-lg text-black flex flex-col justify-between"
-                >
-                  <Image
-                    src={item.images}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-
-                  {/* <div className="absolute top-2.5 right-2.5  flex items-center justify-center">
-                    {item.isLive ? (
-                      <div className="  text-white bg-[#F30000] h-8 px-3 rounded-full flex justify-center gap-1.5 items-center  ">
-                        <div className="bg-white w-[12px] h-[12px]  rounded-full  "></div>
-                        <div className=" text-[12px] md:text-[13px] font-medium line-clamp-1">
-                          LIVE
-                        </div>
-                      </div>
-                    ) : null}
-
-                    {item.isTommorow ? (
-                      <div className=" bg-[#FDF2F7] h-8 px-3 rounded-full flex justify-center gap-2 items-center  ">
-                        <div className=" text-[10px] md:text-[13px] font-medium text-[#E33685] line-clamp-1">
-                          {item.date}
-                        </div>
-                      </div>
-                    ) : null}
-                  </div> */}
-                </div>
-
-                <div className=" text-white p-2 flex flex-col justify-between gap-y-1 md:gap-y-2 h-[5rem] md:h-24 w-[151px] md:w-[209px] ">
-                  <div>
-                    <div className="text-[14px] font-medium line-clamp-2">
-                      {item.title}
-                    </div>
-                  </div>
-
-                  <div className="text-[13px] font-normal  flex flex-row items-center gap-x-1 md:gap-2">
-                    <div className="w-[26px] ">
-                      <div className="relative overflow-hidden w-[20px] h-[20px] md:w-[24px] md:h-[24px] bg-black rounded-full ">
-                        <Image src={item.sellerImages} alt={item.seller} />
-                      </div>
-                    </div>
-
-                    <div className="text-[12px] md:text-[14px] font-normal truncate">
-                      {item.seller}
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
+            {renderShows(itemsData)}
           </SwiperContainer>
         </div>
       </div>
